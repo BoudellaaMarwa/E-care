@@ -1,0 +1,100 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Les Paniers</h1>
+    </div>
+</section>
+{% block body %}
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+
+                    <thead>
+                    <tr>
+                        <th scope="col"> </th>
+                        <th scope="col">id panier</th>
+                        <th scope="col">Quantite</th>
+                        <th scope="col">Prix</th>
+                        <th> </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for panier in paniers %}
+                    <tr>
+                        <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                        <td>{{ panier.id }}</td>
+                        <td>{{ panier.Quantite }}</td>
+                        <td>{{ panier.PrixTot }}</td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger"><a href="{{ path('panier_delete',{'id':panier.id})}}"><i class="fa fa-trash"></i> </button> </td>
+                        <td class="text-right"><button class="btn btn-sm btn-info"><a href="{{ path('panier_show',{'id':panier.id})}}"><i class="fa fa-share"></i> </button> </td>
+                        <td class="text-right"><button class="btn btn-sm btn-warning"><a href="{{ path('panier_edit',{'id':panier.id})}}"><i class="fa fa-edit"></i> </button> </td>
+                    </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">no records found</td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase"> <a href="{{ path('panier_new')}} "> add </a> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div
+{% endblock %}
+
+{#
+{% block title %}Panier index{% endblock %}
+
+{% block body %}
+    <h1>Panier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Produit</th>
+                <th>Quantite</th>
+                <th>Prix_Tot</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for panier in paniers %}
+            <tr>
+                <td>{{ panier.id }}</td>
+                <td>{{ panier.produit }}</td>
+                <td>{{ panier.Quantite }}</td>
+                <td>{{ panier.PrixTot }}</td>
+                <td>
+                    <a href="{{ path('panier_show', {'id': panier.id}) }}">show</a>
+                    <a href="{{ path('panier_edit', {'id': panier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('panier_new') }}">Create new</a>
+{% endblock %}
+#}
